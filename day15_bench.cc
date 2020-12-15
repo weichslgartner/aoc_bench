@@ -117,7 +117,7 @@ static void BENCH_absl_flat_hash_map_reserve(benchmark::State& state) {
   for (auto _ : state) {
 	  absl::flat_hash_map<int, int> memory;
 	  memory.reserve(bound/4);
-	  auto res = solve<absl::flat_hash_map<int, int>>(memory,init_numbers, bound);
+	  auto res = solve(memory,init_numbers, bound);
   }
 }
 
@@ -142,7 +142,7 @@ static void BENCH_absl_node_map_reserve(benchmark::State& state) {
 static void BENCH_stl_unordered_map(benchmark::State& state) {
   for (auto _ : state) {
 	  std::unordered_map<int,int> memory;
-	  auto res = solve< std::unordered_map<int,int>>(memory,init_numbers, bound);
+	  auto res = solve(memory,init_numbers, bound);
   }
 }
 
@@ -150,7 +150,7 @@ static void BENCH_stl_unordered_map_reserve(benchmark::State& state) {
   for (auto _ : state) {
 	  std::unordered_map<int,int> memory;
 	  memory.reserve(bound/4);
-	  auto res = solve< std::unordered_map<int,int>>(memory,init_numbers, bound);
+	  auto res = solve(memory,init_numbers, bound);
   }
 }
 
