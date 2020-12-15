@@ -1,0 +1,14 @@
+[requires]
+fmt/7.0.3
+gtest/1.10.0
+ms-gsl/3.1.0
+abseil/20200923.2
+boost/1.74.0
+benchmark/1.5.2 
+#folly/2020.08.10.00
+
+
+[generators]
+cmake
+cmake_find_package
+cmake_paths
