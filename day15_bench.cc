@@ -73,6 +73,7 @@ auto solve_vector(std::vector<int> &memory, std::deque<int> init_numbers, int co
 	//memory.reserve(bound/4);
 	auto current_number { 0 };
 	auto last_number { -1 };
+
 	for (auto i { 1 }; i <= bound; ++i) {
 		if (!init_numbers.empty()) {
 			current_number = init_numbers.front();
@@ -203,13 +204,32 @@ static void BENCH_boost_unordered_map_reserve(benchmark::State &state) {
 static void BENCH_vector(benchmark::State &state) {
 	for (auto _ : state) {
 		std::vector<int> memory { };
+		auto res = solve_vector(memory, init_numbers, bound);
+	//	fmt::print("{}", res);
+	}
+}
+
+static void BENCH_vector_resize(benchmark::State &state) {
+	for (auto _ : state) {
+		std::vector<int> memory { };
 		memory.resize(bound / 8);
 		auto res = solve_vector(memory, init_numbers, bound);
 	//	fmt::print("{}", res);
 	}
 }
 
+static void BENCH_vector_reserve(benchmark::State &state) {
+	for (auto _ : state) {
+		std::vector<int> memory { };
+		memory.reserve(bound / 8);
+		auto res = solve_vector(memory, init_numbers, bound);
+	//	fmt::print("{}", res);
+	}
+}
+
 BENCHMARK(BENCH_vector)->Unit(benchmark::kMillisecond);
+BENCHMARK(BENCH_vector_resize)->Unit(benchmark::kMillisecond);
+BENCHMARK(BENCH_vector_reserve)->Unit(benchmark::kMillisecond);
 BENCHMARK(BENCH_stl_ordered_map)->Unit(benchmark::kMillisecond);
 BENCHMARK(BENCH_stl_unordered_map)->Unit(benchmark::kMillisecond);
 BENCHMARK(BENCH_stl_unordered_map_reserve)->Unit(benchmark::kMillisecond);
