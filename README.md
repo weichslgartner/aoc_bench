@@ -3,6 +3,11 @@
 benchmarking AdventofCode solutions
 
 Install folly: https://github.com/facebook/folly
+To turn of CPU frequency scaling I used:  
+```
+sudo cpupower frequency-set --governor performance  
+```
+
 ```
 pip install conan  
 mkdir build && cd build  
